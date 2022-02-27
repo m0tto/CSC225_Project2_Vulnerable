@@ -20,6 +20,17 @@ public class CSC245_Project2 {
                 // Normalize the data
                 fileLine = Normalizer.normalize(fileLine, Normalizer.Form.NFKC);
                 
+                // Sanitize each character before printing
+                // Code concept came from rule IDS08-J examples
+                StringBuilder line = new StringBuilder(fileLine.length());
+                for(int i = 0; i < fileLine.length(); i++) {
+                    char x = fileLine.charAt(i);
+                    if(Character.isLetterOrDigit(x) || x == ' ' || x == '\'') {
+                        line.append(x);
+                    }
+                }
+                fileLine = line.toString();
+
                 System.out.println(fileLine);
             }
         } catch (IOException io) {
