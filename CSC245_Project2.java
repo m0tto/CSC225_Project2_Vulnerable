@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.Normalizer;
 
 public class CSC245_Project2 {
 
@@ -16,6 +17,9 @@ public class CSC245_Project2 {
             System.out.println("Email Addresses:");
             // Read one Line using BufferedReader
             while ((fileLine = inputStream.readLine()) != null) {
+                // Normalize the data
+                fileLine = Normalizer.normalize(fileLine, Normalizer.Form.NFKC);
+                
                 System.out.println(fileLine);
             }
         } catch (IOException io) {
